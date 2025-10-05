@@ -187,9 +187,11 @@ def get_user_guess(guessed_letters: Set[str]) -> str:
 
         if len(letter) != 1 or letter not in alphabet:
             print("Неверный формат ввода. Попробуйте снова")
-
+            continue
+            
         if letter in guessed_letters:
             print("Вы уже вводили эту букву. Попробуйте снова")
+            continue
 
         break
 
