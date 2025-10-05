@@ -181,16 +181,17 @@ def draw_gallows(attempts_left: int):
 
 def get_user_guess(guessed_letters: Set[str]) -> str:
     """Ввод и валидация буквы от пользователя"""
-    letter = input("\nВведите букву: ").upper()
-    alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+    while True:
+        letter = input("\nВведите букву: ").upper()
+        alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
 
-    if len(letter) != 1 or letter not in alphabet:
-        print("Неверный формат ввода. Попробуйте снова")
-        return get_user_guess(guessed_letters)
+        if len(letter) != 1 or letter not in alphabet:
+            print("Неверный формат ввода. Попробуйте снова")
 
-    if letter in guessed_letters:
-        print("Вы уже вводили эту букву. Попробуйте снова")
-        return get_user_guess(guessed_letters)
+        if letter in guessed_letters:
+            print("Вы уже вводили эту букву. Попробуйте снова")
+
+        break
 
     return letter
 
@@ -229,9 +230,9 @@ def show_stats():
     average_score = stats["total_score"] / stats["games_played"]
 
     print("\n=== Статистика ===")
-    print(f"Всего игр: {stats["games_played"]}")
-    print(f"Побед: {stats["games_won"]} ({win_percentage}%)")
-    print(f"Лучший счет: {stats["best_score"]}")
+    print(f"Всего игр: {stats['games_played']}")
+    print(f"Побед: {stats['games_won']} ({win_percentage}%)")
+    print(f"Лучший счет: {stats['best_score']}")
 
     if stats["games_won"] > 0:
         print(f"Средний счет: {average_score}")
